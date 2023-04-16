@@ -51,20 +51,18 @@ def url_loop(alias,token,headers,token2):
 
 #url_loop("utvoi","gsaegw34",headers)
 
-alias=[]
-while True:
-    code=input("Enter Your url Last digit::")
-    if code == "":
-        break
-    else:
-        alias.append(code)
-print(alias)
+def code_gen():
+    code=[]
+    co=open("url.txt","r").read().splitlines()
+    for i in co:
+        code.append(i[21::])
+    return code
 timing=input("Enter loop times::")
 
 
 
 
-    
+alias=code_gen()
 
 for i in range(1,int(timing)+1):
     l_di=alias[random.randrange(0,len(alias))]
