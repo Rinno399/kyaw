@@ -32,6 +32,7 @@ def get_token(uag,ali,idd):
     res1=requests.get(f"https://kyayzuutaw.com/blog/types-of-artificial-intelligence-know-the-main-ones?token={idd}&alias={ali}",allow_redirects=False)
 
     cookies=(res1.cookies.get_dict())
+    
     cookie=f"XSRF-TOKEN={cookies['XSRF-TOKEN']}; kyayzuutaw_session={cookies['kyayzuutaw_session']};alias={cookies['alias']};"
     
     
@@ -40,17 +41,20 @@ def get_token(uag,ali,idd):
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
     "Accept-Encoding": "gzip, deflate",
     "Accept-Language": "en-US,en;q=0.9"}
-    res=requests.get("https://kyayzuutaw.com/blog/what-is-dao-know-the-importance-for-the-crypto-market",headers=headers1,allow_redirects=False)
+    res=requests.get("https://kyayzuutaw.com/blog/how-to-make-the-family-budget-learn-5-tips",headers=headers1,allow_redirects=False)
     cok=res.headers
     
     coo=ext_cookie(cok)
-    print(coo)
+    
     cookie2=f"{coo[0]}; {coo[1]};"
     token=[]
     t_oken=[]
     soup = BeautifulSoup(res.text, 'html.parser')
     for txt in soup.find_all("input"):
+        
         token.append(txt.attrs.get("value", ""))
+        
+    
     t_oken.append(token[0])
     t_oken.append(cookie2)
     return t_oken
@@ -104,7 +108,7 @@ for i in range(1,int(timing)+1):
         print(f"[{l_di}+{i}+--]OK>>Sleep {sleep}",end="\r")
     else:
         print(f"URL LAST {ll} Not found {ll}")
-    time.sleep(int(sleep))
+    time.sleep(0)
 
     
 
