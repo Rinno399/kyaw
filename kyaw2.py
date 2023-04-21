@@ -42,11 +42,10 @@ def get_token(uag,ali,idd):
     "Accept-Encoding": "gzip, deflate",
     "Accept-Language": "en-US,en;q=0.9"}
     res=requests.get("https://kyayzuutaw.com/blog/how-to-make-the-family-budget-learn-5-tips",headers=headers1,allow_redirects=False)
-    cok=res.headers
+    coo=res.cookies.get_dict()
+    cookie2=f"XSRF-TOKEN={coo['XSRF-TOKEN']}; kyayzuutaw_session={coo['kyayzuutaw_session']};"
     
-    coo=ext_cookie(cok)
     
-    cookie2=f"{coo[0]}; {coo[1]};"
     token=[]
     t_oken=[]
     soup = BeautifulSoup(res.text, 'html.parser')
@@ -105,12 +104,13 @@ for i in range(1,int(timing)+1):
     "Accept-Encoding": "gzip, deflate",
     "Accept-Language": "en-US,en;q=0.9"}
     if url_loop(l_di,f"{idd}",headers2,token) == 302:
-        print(f"[{l_di}+{i}+--]OK>>Sleep {sleep}",end="\r")
+        print(f"[{l_di}+{i}+--]OK>>Sleep {sleep}",end="\r\r")
     else:
         print(f"URL LAST {ll} Not found {ll}")
-    time.sleep(0)
+    time.sleep(sleep)
 
     
+
 
 
 
